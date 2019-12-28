@@ -40,7 +40,6 @@ class Baraja():
     def elige_carta(self, i):
         return random.randint(0, len(self.naipes)-1)
 
-
     def mezclar(self):
         for i in range(len(self.naipes)):
             #Elegimos carta de intercambio al azar
@@ -50,3 +49,6 @@ class Baraja():
             aux = self.naipes[i]
             self.naipes[i] = self.naipes[al_azar]
             self.naipes[al_azar] = aux
+
+    def repartir(self, mano, jugadores):
+        pass
