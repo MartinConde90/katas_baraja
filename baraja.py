@@ -24,7 +24,7 @@ def mezclar(b):
         b[i] = b[al_azar]
         b[al_azar] = aux
 
-    return(b)
+    return b
 
 class Baraja():
     naipes = []
@@ -43,7 +43,7 @@ class Baraja():
     def mezclar(self):
         for i in range(len(self.naipes)):
             #Elegimos carta de intercambio al azar
-            al_azar = self.elige_carta(i, len(self.naipes))
+            al_azar = self.elige_carta(i)
 
             #Cambiamos la carta por orden(i) por la carta elegida al azar
             aux = self.naipes[i]
@@ -51,4 +51,25 @@ class Baraja():
             self.naipes[al_azar] = aux
 
     def repartir(self, mano, jugadores):
-        pass
+        res = []
+        for j in range(jugadores):
+            res.append([]) #por cada jugador creamos un apartado dentro de "res"
+
+        for c in range(mano):
+            for item in res:
+                carta = self.naipes.pop(0) #con pop quitamos la primera carta de la baraja
+                item.append(carta) #metemos esa carta en "item", recordamos que está recorriendo y accediendo a "res", no haciendo copia, ya que es una lista
+                                       
+            
+        return res
+
+    #otra forma de hacer el repartir
+    def repartirF(self, mano, jugadores):
+        jugadas = []
+        for i in range(jugadores):
+            jugadas.append([])
+            for j in range(mano):
+                jugadas[i].append(self.naipes[j*jugadores+i])
+        cartas = mano * jugadores
+        self.naipes = self.naipes[cartas:]
+        return jugadas
